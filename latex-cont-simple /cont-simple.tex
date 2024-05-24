@@ -1,0 +1,32 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\MultiTitle{cont-simple}
+\MultiHeader{CONTEXT}{context}
+\CONTEXT{context}{}{}
+\SETS{
+	\Set{L}{}
+}
+\CONSTANTS{
+	\Constant{x0}{}
+	\Constant{l0}{}
+	\Constant{l1}{}
+	\Constant{l2}{}
+	\Constant{l3}{}
+}
+\AXIOMS{
+	\Axiom{pre(x0)}{false}{$x0 \in{} \nat{} $}{}
+	\Axiom{axm1}{false}{$partition(L, \{l0\}, \{l1\}, \{l2\}, \{l3\})$}{}
+	\Axiom{prob1}{false}{$x0>5$}{}
+}
+\END
+\MultiHeader{MACHINE}{algorithm}
+\MACHINE{algorithm}{}{context}{}
+\VARIABLES{
+	\Variable{x}{}
+	\Variable{l}{}
+}
+\EVENTS{
+
+\END
+\end{document}
