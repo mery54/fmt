@@ -1,0 +1,120 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\MultiTitle{cont-max2}
+\MultiHeader{CONTEXT}{context0}
+\CONTEXT{context0}{}{}
+\SETS{
+	\Set{C}{}
+}
+\CONSTANTS{
+	\Constant{x0}{}
+	\Constant{y0}{}
+	\Constant{z0}{}
+	\Constant{l0}{}
+	\Constant{l1}{}
+	\Constant{l2}{}
+	\Constant{l3}{}
+	\Constant{l4}{}
+	\Constant{l5}{}
+	\Constant{l6}{}
+	\Constant{l7}{}
+	\Constant{l8}{}
+	\Constant{l9}{}
+}
+\AXIOMS{
+	\Axiom{axm1}{false}{$x0 \in{} \nat{} $}{}
+	\Axiom{axm2}{false}{$y0\in{}\nat{}  $}{}
+	\Axiom{axm5}{false}{$z0 \in{} \intg{} $}{}
+	\Axiom{axm3}{false}{$partition(C, \{l0\}, \{l1\}, \{l2\}, \{l3\}, \{l4\}, \{l5\}, \{l6\}, \{l7\}, \{l8\}, \{l9\})$}{}
+	\Axiom{axm7}{false}{$x0=12$}{}
+	\Axiom{axm6}{false}{$y0=34$}{}
+}
+\END
+\MultiHeader{MACHINE}{algorithm}
+\MACHINE{algorithm}{}{context0}{}
+\VARIABLES{
+	\Variable{pc}{}
+	\Variable{x}{}
+	\Variable{y}{}
+	\Variable{z}{}
+}
+\INVARIANTS{
+	\Invariant{inv1}{false}{$pc \in{} C$}{}
+	\Invariant{inv2}{false}{$x \in{} \nat{}   $}{}
+	\Invariant{inv3}{false}{$y \in{} \nat{}   $}{}
+	\Invariant{inv4}{false}{$\\z \in{} \intg{} $}{}
+	\Invariant{inv5}{false}{$x=x0 \land{} y=y0$}{}
+	\Invariant{inv6}{false}{$pc=l0 \limp{} x=x0 \land{} y=y0 \land{} z=z0 \land{} x0\in{} \nat{}  \land{} y0\in{}\nat{} \land{} z0\in{}\intg{} $}{}
+	\Invariant{inv7}{false}{$pc=l1 \limp{} x=x0 \land{} y=y0 \land{} z=z0 \land{} x<y$}{}
+	\Invariant{inv8}{false}{$pc=l2 \limp{} x=x0 \land{} y=y0 \land{} x<y \land{} z=y0$}{}
+	\Invariant{inv9}{false}{$pc=l3 \limp{}  x=x0 \land{} y=y0 \land{} z=z0 \land{} x\geq{}y$}{}
+	\Invariant{inv10}{false}{$pc=l4 \limp{} x=x0 \land{} y=y0 \land{} x=y \land{} z=x0$}{}
+	\Invariant{inv11}{false}{$pc=l5 \limp{} x=x0 \land{} y=y0 \land{} z \in{} \{x0,y0\} \land{} x\leq{} z \land{} y \leq{} z$}{}
+	\Invariant{pre}{true}{$x0 \in{} \nat{} \land{} y0 \in{} \nat{} \land{} z0 \in{} \intg{} \land{} x=x0 \land{} y=y0\land{}z=z0 \limp{}  x0 \in{} \nat{} \land{} y0 \in{} \nat{} \land{} z0 \in{} \intg{} \land{} x=x0 \land{} y=y0\land{}z=z0  $}{}
+	\Invariant{post}{true}{$pc=l5 \land{} x=x0 \land{} y=y0 \land{} z \in{} \{x0,y0\} \land{} x\leq{} z \land{} y \leq{} z \limp{} z \in{} \{x0,y0\} \land{} x0\leq{} z \land{} y0 \leq{} z $}{}
+}
+\EVENTS{
+\INITIALISATION{false}{}{
+	\ACTIONS{false}{
+		\Action{act5}{$pc \bcmeq{} l0$}{true}{}
+		\Action{act6}{$x\bcmeq{}x0 $}{true}{}
+		\Action{act7}{$y\bcmeq{}y0$}{true}{}
+		\Action{act8}{$z\bcmeq{}z0$}{true}{}
+	}
+}
+\EVT{al0l1}{false}{ordinary}{}{}{
+	\GUARDS{false}{
+		\Guard{grd1}{false}{$pc=l0$}{true}{}
+		\Guard{grd2}{false}{$x<y$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act4}{$pc \bcmeq{} l1$}{true}{}
+	}
+}
+\EVT{al1l2}{false}{ordinary}{}{}{
+	\GUARDS{false}{
+		\Guard{grd1}{false}{$pc=l1$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$pc\bcmeq{}l2$}{true}{}
+		\Action{act2}{$z\bcmeq{}y$}{true}{}
+	}
+}
+\EVT{al0l3}{false}{ordinary}{}{}{
+	\GUARDS{false}{
+		\Guard{grd1}{false}{$pc=l0$}{true}{}
+		\Guard{grd2}{false}{$x \geq{} y$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$pc\bcmeq{}l3$}{true}{}
+	}
+}
+\EVT{al2l5}{false}{ordinary}{}{}{
+	\GUARDS{false}{
+		\Guard{grd1}{false}{$pc=l2$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$pc\bcmeq{}l5$}{true}{}
+	}
+}
+\EVT{al3l4}{false}{ordinary}{}{}{
+	\GUARDS{false}{
+		\Guard{grd1}{false}{$pc=l3$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$pc\bcmeq{}l4$}{true}{}
+		\Action{act2}{$z\bcmeq{}x$}{true}{}
+	}
+}
+\EVT{al4l5}{false}{ordinary}{}{}{
+	\GUARDS{false}{
+		\Guard{grd1}{false}{$pc=l4$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$pc\bcmeq{}l5$}{true}{}
+	}
+}
+}
+\END
+\end{document}

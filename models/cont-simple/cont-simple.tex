@@ -1,0 +1,74 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\MultiTitle{cont-simple}
+\MultiHeader{CONTEXT}{context}
+\CONTEXT{context}{}{}
+\SETS{
+	\Set{L}{}
+}
+\CONSTANTS{
+	\Constant{x0}{}
+	\Constant{l0}{}
+	\Constant{l1}{}
+	\Constant{l2}{}
+	\Constant{l3}{}
+}
+\AXIOMS{
+	\Axiom{pre(x0)}{false}{$x0 \in{} \nat{} $}{}
+	\Axiom{axm1}{false}{$partition(L, \{l0\}, \{l1\}, \{l2\}, \{l3\})$}{}
+	\Axiom{prob1}{false}{$x0>5$}{}
+}
+\END
+\MultiHeader{MACHINE}{algorithm}
+\MACHINE{algorithm}{}{context}{}
+\VARIABLES{
+	\Variable{x}{}
+	\Variable{l}{}
+}
+\INVARIANTS{
+	\Invariant{inv1}{false}{$x \in{} \nat{} $}{}
+	\Invariant{inv2}{false}{$l \in{} L$}{}
+	\Invariant{inv3}{false}{$l=l0 \limp{}0\leq{}x \land{} x \leq{} x0 \land{} x0\in{}\nat{}  $}{}
+	\Invariant{inv4}{false}{$l=l1 \limp{} 0<x \land{} x \leq{} x0 \land{} x0\in{}\nat{}  $}{}
+	\Invariant{inv5}{false}{$l=l2 \limp{} x=0$}{}
+	\Invariant{requires}{true}{$x0 \in{} \nat{} \land{} x=x0  \limp{} x=x0\land{}x0\in{}\nat{} $}{}
+	\Invariant{ensures}{true}{$x=0 \land{} x=x0 \limp{} x=0$}{}
+}
+\EVENTS{
+\INITIALISATION{false}{}{
+	\ACTIONS{false}{
+		\Action{act1}{$x \bcmeq{} x0$}{true}{}
+		\Action{act2}{$l \bcmeq{} l0$}{true}{}
+	}
+}
+\EVT{el0l1}{false}{ordinary}{}{}{
+	\GUARDS{false}{
+		\Guard{grd1}{false}{$l=l0$}{true}{}
+		\Guard{grd2}{false}{$0<x$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$l\bcmeq{}l1$}{true}{}
+	}
+}
+\EVT{el0l2}{false}{ordinary}{}{}{
+	\GUARDS{false}{
+		\Guard{grd1}{false}{$l=l0$}{true}{}
+		\Guard{grd2}{false}{$\lnot{}( 0<x)$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$l\bcmeq{}l2$}{true}{}
+	}
+}
+\EVT{el1l0}{false}{ordinary}{}{}{
+	\GUARDS{false}{
+		\Guard{grd1}{false}{$l=l1$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$l\bcmeq{}l0$}{true}{}
+		\Action{act2}{$x\bcmeq{}x-1$}{true}{}
+	}
+}
+}
+\END
+\end{document}
